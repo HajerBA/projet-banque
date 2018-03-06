@@ -2,9 +2,13 @@
 
   <section>
       <img src="../assets/iconegest.jpg" alt="gestion" id="icon" >
-      <h1>Account-Management</h1>
-     <OptList :operations="tabOpt"></OptList>
-     <AddOpt @addOpt="addOpt"></AddOpt> 
+      <h1 class="maclass">Account-Management</h1>
+      <AddOpt class="maclass" @addOpt="addOpt"></AddOpt>
+      <OptList class="maclass" :operations="tabOpt" > </OptList>
+      <OptMonth class="maclass" :months="monthOpt"></OptMonth>
+      <!-- <AffGraph class="maclass" :months="monthOpt"></AffGraph> -->
+      <AccountManage class="maclass" :accounts="account"></AccountManage>
+      {{JSON.stringify(test)}}
      
   </section>
 </template>
@@ -14,6 +18,13 @@
 
 import OptList from './ListOpt.vue';
 import AddOpt from './AddOpt.vue';
+import OptMonth from './OptMonth.vue'
+import AffGraph from './AffGraph.vue'
+import AccountManage from './AccountsManag.vue'
+import Testy from '../test.js'
+
+
+
 
 
 
@@ -21,13 +32,19 @@ export default {
     name:'CompteManagement',
     components: {
         AddOpt,
-        OptList
+        OptList,
+        OptMonth,
+        AffGraph,
+        AccountManage
     },
 
    data: function(){
     return {
       
-      tabOpt: [{id: 1,title:'versement',category:'alimentaire', Date_Operation: '2017-01-30', money:'1000$'}]
+      tabOpt: [{id: '',title:'',category:'', Date_Operation: '', money:'',action:''}],
+      monthOpt: [{id: '',title:'', money:''}],
+      account: [{Operations:'',ES:'',Ratio:''}],
+      test: Testy.affOpt()
       
     }
   },
@@ -49,5 +66,10 @@ export default {
 #icon{
   width: 400px;
   border-radius: 1cm;
+}
+.maclass{
+    margin: 88px;
+    padding: 5px;
+    border-bottom: 5px solid;
 }
 </style>

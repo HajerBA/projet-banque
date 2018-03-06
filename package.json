@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "json-server --watch db.json & vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.1",
+    "chart.js": "^2.7.1",
+    "font-awesome": "^4.7.0",
+    "json-server": "^0.12.1",
     "node-sass": "^4.7.2",
     "nodesass": "0.0.2-security",
-    "vue": "^2.5.13"
+    "sass-loader": "^6.0.7",
+    "vue": "^2.5.13",
+    "vue-chartjs": "^3.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.1",

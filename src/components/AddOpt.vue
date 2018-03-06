@@ -1,7 +1,7 @@
 <template>
 <section>
       
-      <h1>Add Operation</h1>
+      <h4>Add Operation</h4>
       
   <div>
     <b-form @submit.prevent="onSubmit" @reset="onReset">
@@ -79,16 +79,12 @@ export default {
         category:'',
         money: '',
         Date_Operation: ''
-      },
-      
-      // show: true
+      }
     }
   },
   methods: {
     onSubmit () {
-      // evt.preventDefault();
-      //alert(JSON.stringify(this.form));
-      //emit
+     
       this.$emit('addOpt',Object.assign({}, this.form));
     },
     onReset (evt) {
@@ -105,3 +101,8 @@ export default {
   }
 }
 </script>
+<style>
+h4 {
+  color: salmon;
+}
+</style>

@@ -1,0 +1,11 @@
+{
+    "accounts": [
+      { 
+        "id": 1,
+        "title":"pay",
+        "category":"food",
+        "Date_Operation": "2017-02_17",
+        "money": 1000
+      }
+    ]
+}
