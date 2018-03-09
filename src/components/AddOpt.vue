@@ -4,18 +4,8 @@
       <h4>Add Operation</h4>
       
   <div>
-    <b-form @submit.prevent="onSubmit" @reset="onReset">
-      <b-form-group id="exampleInputGroup1"
-                    label="Id:"
-                    label-for="exampleInput1"
-                    >
-        <b-form-input id="exampleInput1"
-                      type="number"
-                      v-model="form.id"
-                      required
-                      placeholder="Enter id">
-        </b-form-input>
-      </b-form-group>
+    <b-form @submit.prevent="onSubmit" @reset="onReset" style="width:800px; margin:auto;">
+     
       <b-form-group id="exampleInputGroup2"
                     label="Title:"
                     label-for="exampleInput2"
@@ -24,7 +14,7 @@
                       type="text"
                       v-model="form.title"
                       required
-                      placeholder="Enter une operation">
+                      placeholder="Enter operation">
         </b-form-input>
       </b-form-group>
       <b-form-group id="exampleInputGroup3"
@@ -35,7 +25,7 @@
                       type="text"
                       v-model="form.category"
                       required
-                      placeholder="Enter une category">
+                      placeholder="Enter category">
         </b-form-input>
       </b-form-group>
       <b-form-group id="exampleInputGroup4"
@@ -74,7 +64,7 @@ export default {
   data () {
     return {
       form: {
-        id:'',
+       
         title: '',
         category:'',
         money: '',
@@ -90,7 +80,7 @@ export default {
     onReset (evt) {
       evt.preventDefault();
       /* Reset our form values */
-      this.form.id = '';
+     
       this.form.title = '';
       this.form.category = '';
       this.form.money= '';

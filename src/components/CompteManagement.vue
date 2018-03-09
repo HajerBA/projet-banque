@@ -1,75 +1,79 @@
 <template>
 
   <section>
-      <img src="../assets/iconegest.jpg" alt="gestion" id="icon" >
-      <h1 class="maclass">Account-Management</h1>
+      <img src="../assets/iconegest.jpg" alt="gestion" id="icon" > <hr style="width:800px;">
       <AddOpt class="maclass" @addOpt="addOpt"></AddOpt>
-      <OptList class="maclass" :operations="tabOpt" > </OptList>
+      <OptList class="maclass" :operations="tabOpt" @removeOpt="removeOpt" > </OptList>
       <OptMonth class="maclass" :months="monthOpt"></OptMonth>
       <!-- <AffGraph class="maclass" :months="monthOpt"></AffGraph> -->
       <AccountManage class="maclass" :accounts="account"></AccountManage>
-      {{JSON.stringify(test)}}
+     
      
   </section>
 </template>
 
 <script>
-
-
-import OptList from './ListOpt.vue';
-import AddOpt from './AddOpt.vue';
-import OptMonth from './OptMonth.vue'
-import AffGraph from './AffGraph.vue'
-import AccountManage from './AccountsManag.vue'
-import Testy from '../test.js'
-
-
-
-
-
+import OptList from "./ListOpt.vue";
+import AddOpt from "./AddOpt.vue";
+import OptMonth from "./OptMonth.vue";
+import AffGraph from "./AffGraph.vue";
+import AccountManage from "./AccountsManag.vue";
+import Testy from "../test.js";
 
 export default {
-    name:'CompteManagement',
-    components: {
-        AddOpt,
-        OptList,
-        OptMonth,
-        AffGraph,
-        AccountManage
-    },
+  name: "CompteManagement",
+  components: {
+    AddOpt,
+    OptList,
+    OptMonth,
+    AffGraph,
+    AccountManage
+  },
 
-   data: function(){
+  data: function() {
     return {
-      
-      tabOpt: [{id: '',title:'',category:'', Date_Operation: '', money:'',action:''}],
-      monthOpt: [{id: '',title:'', money:''}],
-      account: [{Operations:'',ES:'',Ratio:''}],
-      test: Testy.affOpt()
-      
-    }
+      tabOpt: [
+        {  title: "", category: "", Date_Operation: "", money: "" }
+      ],
+      monthOpt: [{ id: "", title: "", money: "" }],
+      account: [{ Operations: "", ES: "", Ratio: "" }]
+    };
+  },
+  beforeCreate() {
+    Testy.affOpt().then(response => {
+      this.tabOpt = response.data;
+    });
+    Testy.getTotal()
   },
   methods: {
-     
-      addOpt (form){//argument envoyé par l'event
-        this.tabOpt.push(form);
-      },
- 
-    deleteDog (optId){
-      this.tabOpt= this.tabOpt.filter(form => form.id !== optId);
+    addOpt(data) {
+      //argument envoyé par l'event
+      Testy.addOpt(data.title, data.category, data.Date_Operation, data.money);
+      Testy.affOpt().then((response) => {
+        this.tabOpt.push(response.data);
+      })
+    },
+    removeOpt(id) {
+      Testy.removeOpt(id).then(() => {
+        this.tabOpt.forEach((el, index) => {
+          if (el.id === id){
+            this.tabOpt.splice(index,1);
+          }
+        })
+      })
     }
   }
-  
 }
 </script>
 
 <style>
-#icon{
+#icon {
   width: 400px;
   border-radius: 1cm;
 }
-.maclass{
-    margin: 88px;
-    padding: 5px;
+.maclass {
+    margin: 70px;
+    padding: 2px;
     border-bottom: 5px solid;
 }
 </style>
